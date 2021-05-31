@@ -15,11 +15,11 @@ export class AppComponent {
 
   private socket$: WebSocketSubject<String>;
   private socket;
-  //private socket = new WebSocket("wss://echo.websocket.org/");
 
   constructor() {
 
     this.socket = new WebSocket('ws:' + location.host);
+    //private socket = new WebSocket("wss://echo.websocket.org/");
     this.socket.onopen = function() {
       alert("[open] Connection established");
       alert("Sending to server");

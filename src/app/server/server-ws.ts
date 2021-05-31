@@ -45,7 +45,7 @@ wss.on('connection', (ws: WebSocket) => {
   //send immediatly a feedback to the incoming connection
   ws.send('Hi there, I am a WebSocket server');
 
-  ws.on('error', (err) => {
+  ws.on('error', err => {
     console.warn(`Client disconnected - reason: ${err}`);
   })
 });
