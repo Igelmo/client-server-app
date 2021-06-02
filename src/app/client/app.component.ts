@@ -13,31 +13,20 @@ export class AppComponent {
 
   @ViewChild('viewer') private viewer?: ElementRef;
 
-  private socket$: WebSocketSubject<String>;
   private socket;
 
   constructor() {
 
-    this.socket = new WebSocket('ws:' + location.host);
-    //private socket = new WebSocket("wss://echo.websocket.org/");
+    //this.socket = new WebSocket('ws://' + location.host);
+    this.socket = new WebSocket("wss://echo.websocket.org/");
     this.socket.onopen = function() {
       alert("[open] Connection established");
       alert("Sending to server");
     };
-
-    //create observer
-    this.socket$ = new WebSocketSubject('ws:' + location.host + '/');
-
-    this.socket$
-      .subscribe(
-        (message) => console.log('<-- ' + message),
-        (err) => console.error(err),
-        () => console.warn('Completed!')
-      );
   }
 
   public send(): void {
-    this.socket.send("I'm alive! Hello server");
+//    this.socket.send("I'm alive! Hello server");
   }
 
 
