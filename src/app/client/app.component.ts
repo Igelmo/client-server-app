@@ -26,7 +26,7 @@ export class AppComponent {
   }
 
   public send(): void {
-//    this.socket.send("I'm alive! Hello server");
+    this.socket.send("I'm alive! Hello server");
   }
 
 
