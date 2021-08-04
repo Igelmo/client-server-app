@@ -9,6 +9,7 @@ import {WebSocketSubject} from 'rxjs/webSocket';
 })
 export class AppComponent {
   title = 'client-server-websockets'
+  lastGesture = 'Not action yet'
   text = 'Not action yet'
 
   @ViewChild('viewer') private viewer?: ElementRef;
@@ -27,6 +28,10 @@ export class AppComponent {
 
   public send(): void {
     this.socket.send("I'm alive! Hello server");
+  }
+
+  public cleanLogs(): void {
+    this.text = ""
   }
 
 
