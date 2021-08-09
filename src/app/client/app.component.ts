@@ -1,6 +1,4 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {WebSocketSubject} from 'rxjs/webSocket';
-
 
 @Component({
   selector: 'app-root',
@@ -14,16 +12,20 @@ export class AppComponent {
 
   @ViewChild('viewer') private viewer?: ElementRef;
 
-  private socket;
+  private socket
 
   constructor() {
 
-    //this.socket = new WebSocket('ws://' + location.host);
-    this.socket = new WebSocket("wss://echo.websocket.org/");
+    this.socket = new WebSocket("ws://127.0.0.1:8080");
     this.socket.onopen = function() {
       alert("[open] Connection established");
       alert("Sending to server");
     };
+
+    this.socket.addEventListener("message", (event) => {
+       this.text += '\n' + event.data;
+       this.lastGesture = event.data;
+    });
   }
 
   public send(): void {
@@ -33,6 +35,4 @@ export class AppComponent {
   public cleanLogs(): void {
     this.text = ""
   }
-
-
 }
